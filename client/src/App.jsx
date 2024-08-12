@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Navbar from "./components/Navbar"
 
-import About from "./components/About"
-import ContactUs from "./components/ContactUs"
-import Profile from "./components/Profile"
-import Home from "./components/Home"
+import About from "./pages/About"
+import ContactUs from "./pages/ContactUs"
+import Profile from "./pages/Profile"
+import Home from "./pages/Home"
+import PhysicalDetails from "./pages/PhysicalDetails"
 
 function App() {
 
@@ -14,6 +15,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/physicaldetails" element={<PhysicalDetails />} />
+
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/profile" element={<Profile />} />

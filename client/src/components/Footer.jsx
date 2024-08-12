@@ -3,7 +3,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 
 function Footer() {
     return (
-        <footer className="bg-gradient-to-r from-purple-300 via-pink-300 to-red-300  text-white border-t border-t-teal-200 p-4">
+        <footer className="bg-gradient-to-r from-purple-300 via-pink-300 to-red-300 text-white border-t border-t-teal-200 p-4">
             <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
 
 
@@ -31,7 +31,7 @@ function Footer() {
                 </div>
 
                 {/* Copyright Notice */}
-                <div className="md:mt-0 text-sm text-gray-800">
+                <div className="md:mt-0 text-sm text-white">
                     © 2024 Your Company. All rights reserved.
                 </div>
             </div>

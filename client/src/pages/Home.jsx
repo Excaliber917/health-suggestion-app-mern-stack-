@@ -1,4 +1,5 @@
-import Footer from "./Footer";
+import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -24,7 +25,7 @@ function Home() {
           </div>
 
           {/* Card 2 */}
-          <div className="relative w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6 text-center hover:bg-pink-100 transition-colors duration-300 ease-in-out cursor-pointer">
+          <Link to="/physicaldetails" className="relative w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6 text-center hover:bg-pink-100 transition-colors duration-300 ease-in-out cursor-pointer">
             <h2 className="text-2xl font-bold text-gray-800">Physical Health</h2>
             <p className="text-gray-600 mt-2">Learn about physical activities and diet to keep your body fit.</p>
             <img
@@ -32,7 +33,7 @@ function Home() {
               alt="Physical Health"
               className="absolute -top-10 right-10 h-16 w-16 rounded-full border-4 border-white"
             />
-          </div>
+          </Link>
         </section>
       </div>
       <Footer />
