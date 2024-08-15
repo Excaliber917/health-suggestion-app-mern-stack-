@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useBmiCalcualtor } from '../hooks/useBmiCalculator';
 import { useHemoglobinStatus } from '../hooks/useHemoglobinStatus';
 import { useBloodPressure } from '../hooks/useBloodPressureStatus';
+import toast from 'react-hot-toast';
 
 function PhysicalDetails() {
     const [formData, setFormData] = useState({
@@ -27,7 +28,13 @@ function PhysicalDetails() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const { height, weight, hemoglobin, bloodPressure } = formData;
+        const { name, age, height, weight, hemoglobin, bloodPressure } = formData;
+
+        if (!name || !age || !height || !weight) {
+            toast.error("all fields are required ")
+            setResults(null)
+            return
+        }
 
         // // Calculate BMI
         // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -53,19 +60,11 @@ function PhysicalDetails() {
 
     return (
         <>
-            <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-                <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+            <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4 ">
+                <div className="bg-white shadow-lg rounded-lg  p-8 w-full">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Physical Details</h2>
-                    {/* Results */}
-                    {results && (
-                        <div className="mt-6 p-4 bg-gray-200 rounded-lg">
-                            <h3 className="text-xl font-bold text-gray-800 mb-4">Results</h3>
-                            <p>BMI: {results.bmi} </p>
-                            <p>Hemoglobin Status: {results.hemoglobinStatus}</p>
-                            <p>Blood Pressure Status: {results.bloodPressureStatus}</p>
-                        </div>
-                    )}
-                    <form onSubmit={handleSubmit}>
+
+                    <form onSubmit={handleSubmit} className=''>
                         <div className="mb-4">
                             <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">Name</label>
                             <input
@@ -75,7 +74,7 @@ function PhysicalDetails() {
                                 value={formData?.name}
                                 onChange={handleChange}
                                 className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-400"
-                                required
+
                             />
                         </div>
 
@@ -88,7 +87,7 @@ function PhysicalDetails() {
                                 value={formData?.age}
                                 onChange={handleChange}
                                 className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-400"
-                                required
+
                             />
                         </div>
 
@@ -101,7 +100,7 @@ function PhysicalDetails() {
                                 value={formData?.height}
                                 onChange={handleChange}
                                 className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-400"
-                                required
+
                             />
                         </div>
 
@@ -114,7 +113,7 @@ function PhysicalDetails() {
                                 value={formData?.weight}
                                 onChange={handleChange}
                                 className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-400"
-                                required
+
                             />
                         </div>
 
@@ -175,6 +174,15 @@ function PhysicalDetails() {
                             Submit
                         </button>
                     </form>
+                    {/* Results */}
+                    {results && (
+                        <div className="mt-6 p-4 bg-gray-200 rounded-lg">
+                            <h3 className="text-xl font-bold text-gray-800 mb-4">Results</h3>
+                            <p>BMI: {results.bmi} </p>
+                            <p>Hemoglobin Status: {results.hemoglobinStatus}</p>
+                            <p>Blood Pressure Status: {results.bloodPressureStatus}</p>
+                        </div>
+                    )}
 
 
                 </div>

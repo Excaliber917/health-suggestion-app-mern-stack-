@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Navbar from "./components/Navbar"
-
+import {Toaster} from 'react-hot-toast'
 import About from "./pages/About"
 import ContactUs from "./pages/ContactUs"
 import Profile from "./pages/Profile"
@@ -21,6 +21,7 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
+        <Toaster/>
 
       </BrowserRouter>
 
