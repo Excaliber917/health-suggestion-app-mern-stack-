@@ -1,5 +1,6 @@
 import User from "../models/user.model.js"
 import bcrypt from 'bcrypt'
+import genToken from "../utils/token.js";
 
 
 // Email validation function
@@ -68,4 +69,48 @@ export const signUp = async (req, res) => {
     }
 
 
+}
+
+
+export const login = async (req, res) => {
+    const { username, password } = req.body
+
+
+    try {
+
+        const user = await User.findOne({ username })
+        const isPasswordCorrect = await bcrypt.compare(password, user?.password || "")
+
+        // console.log(isPasswordCorrect)
+        if (!user || !isPasswordCorrect) {
+
+            return res.status(400).json({ error: "invalid login details" })
+        }
+
+        genToken(user._id, res)
+
+        return res.status(200).json({
+
+            _id: user._id,
+            name: user.name,
+            username: user.username,
+            gender: user.gender,
+            profilePic: user.profilePic,
+        })
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
+export const logout = (req, res) => {
+    try {
+        res.cookie("cookie", "", { maxAge: 0 })
+        res.status(200).json({ message: "loged out successfully" })
+
+    } catch (error) {
+        console.log(error.message)
+        return res.status(404).json({ error: error.message })
+    }
 }
