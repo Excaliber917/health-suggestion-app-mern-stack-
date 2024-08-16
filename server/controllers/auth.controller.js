@@ -50,7 +50,7 @@ export const signUp = async (req, res) => {
             return res.status(200).json({
                 _id: newUser._id,
                 name: newUser.name,
-                username: newUser.userName,
+                username: newUser.username,
                 email: newUser.email,
                 gender: newUser.gender,
                 profilePic: newUser.profilePic

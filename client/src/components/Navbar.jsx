@@ -1,12 +1,17 @@
 import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { GiCrossMark } from "react-icons/gi";
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useAuthContext } from '../context/AuthContext';
+import { IoLogOutOutline } from "react-icons/io5";
+import useLogout from '../hooks/useLogout';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-
+  const navigate = useNavigate()
+  const {loading, logout} = useLogout()
+  const { user } = useAuthContext()
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -27,14 +32,20 @@ function Navbar() {
       </div>
 
       {/* User Info */}
-      <div className="hidden md:flex items-center space-x-4">
-        <Link to="/profile" className='font-semibold hover:text-white'>John Doe</Link>
+      {user ? (<div className="hidden md:flex items-center space-x-4">
+        <Link to="/profile" className='font-semibold hover:text-white'>{user.username}</Link>
         <img
-          src="https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=600"
+          src={user.profilePic}
           alt="Profile"
           className="h-8 w-8 rounded-full border-2 border-gray-700"
         />
-      </div>
+        <IoLogOutOutline size={25}  title='logout' className=' cursor-pointer' onClick={()=>logout()}/>
+      </div>) : (
+        <div className='md:flex items-center gap-2 hidden'>
+          <button className=' hidden md:block border-2 py-1 px-4 font-bold rounded hover:bg-slate-50 hover:text-slate-900 duration-200 cursor-pointer text-md' onClick={() => navigate("/login")}>Login</button>
+          <button className=' hidden md:block border-2 py-1 px-4 font-bold rounded hover:bg-slate-50 hover:text-slate-900 duration-200 cursor-pointer text-md' onClick={() => navigate("/signup")}>Sign up</button>
+        </div>
+      )}
 
       {/* Hamburger Icon for Mobile */}
       <div className="md:hidden flex items-center">
@@ -49,20 +60,21 @@ function Navbar() {
           className="absolute top-4 right-4 text-gray-200"
           onClick={toggleSidebar}
         >
-          <GiCrossMark className="h-6 w-6 cursor-pointer"/>
+          <GiCrossMark className="h-6 w-6 cursor-pointer" />
         </button>
         <div className="flex flex-col items-start pl-7 mt-16 space-y-8 text-gray-200">
           <Link to="/" className={`text-xl hover:text-white ${location.pathname === "/" ? `text-2xl font-bold` : ``}`}>Home</Link>
           <Link to="/about" className={`text-xl hover:text-white ${location.pathname === "/about" ? `text-2xl font-bold` : ``}`}>About</Link>
           <Link to="/contact" className={`text-xl hover:text-white ${location.pathname === "/contact" ? `text-2xl font-bold` : ``}`}>Contact</Link>
-          <div className="flex items-center space-x-4 mt-auto mb-8">
+          {user ? (<div className="flex items-center space-x-4 mt-auto mb-8">
             <Link to="/profile" className="hover:text-white">John Doe</Link>
             <img
               src="https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=600"
               alt="Profile"
               className="h-8 w-8 rounded-full border-2 border-gray-700"
             />
-          </div>
+            <IoLogOutOutline />
+          </div>) : <button className='border-2 py-2 px-4 font-bold rounded hover:bg-slate-50 hover:text-slate-900 duration-200 cursor-pointer text-md'>Login</button>}
         </div>
       </div>
     </nav>
