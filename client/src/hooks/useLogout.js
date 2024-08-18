@@ -6,9 +6,11 @@ import { useAuthContext } from "../context/AuthContext"
 function useLogout() {
 
     const [loading, setLoading] = useState(false)
-    const { setUser } = useAuthContext()
+    const {user, setUser } = useAuthContext()
     const logout = async () => {
         setLoading(true)
+        if(!user)
+            return
         try {
             await axios.post('api/auth/logout')
             localStorage.removeItem("Healthuser")

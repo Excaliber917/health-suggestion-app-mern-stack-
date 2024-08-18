@@ -3,6 +3,7 @@ import { useBmiCalcualtor } from '../hooks/useBmiCalculator';
 import { useHemoglobinStatus } from '../hooks/useHemoglobinStatus';
 import { useBloodPressure } from '../hooks/useBloodPressureStatus';
 import toast from 'react-hot-toast';
+import {useAuthContext} from '../context/AuthContext'
 
 function PhysicalDetails() {
     const [formData, setFormData] = useState({
@@ -15,6 +16,8 @@ function PhysicalDetails() {
         bloodSugar: '',
         thyroid: ''
     });
+
+    const {user} = useAuthContext()
 
     const [results, setResults] = useState(null);
 
@@ -34,6 +37,17 @@ function PhysicalDetails() {
             toast.error("all fields are required ")
             setResults(null)
             return
+        }
+
+        if (!user) {
+            const hasSubmitted = localStorage.getItem('hasSubmitted');
+            if (hasSubmitted) {
+                toast.error("Please log in or sign up to use the form again.");
+              
+                return;
+            } else {
+                localStorage.setItem('hasSubmitted', 'true'); 
+            }
         }
 
         // // Calculate BMI
@@ -60,9 +74,9 @@ function PhysicalDetails() {
 
     return (
         <>
-            <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4 ">
-                <div className="bg-white shadow-lg rounded-lg  p-8 w-full">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Physical Details</h2>
+            <div className="bg-gradient-to-r from-purple-300 via-pink-300 to-red-300 min-h-screen flex items-center justify-center px-8 py-4 ">
+                <div className="bg-white shadow-lg rounded-lg p-8 w-full">
+                    <h2 className="text-2xl font-bold text-slate-700 mb-6 text-center">Physical Details</h2>
 
                     <form onSubmit={handleSubmit} className=''>
                         <div className="mb-4">

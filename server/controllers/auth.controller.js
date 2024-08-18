@@ -94,12 +94,14 @@ export const login = async (req, res) => {
             _id: user._id,
             name: user.name,
             username: user.username,
+            email:user.email,
             gender: user.gender,
             profilePic: user.profilePic,
         })
 
     } catch (error) {
         console.log(error)
+        return res.status(404).json({ error: error.message })
     }
 
 }
