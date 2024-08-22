@@ -17,7 +17,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-purple-300 via-pink-300 to-red-300 text-white p-4 flex justify-between items-center shadow-md">
+    <nav className="sticky top-0 bg-gradient-to-r from-purple-300 via-pink-300 to-red-300 text-white p-4 flex justify-between items-center">
       {/* Logo */}
       <Link to="/" className="text-lg font-bold md:text-xl">
         {/* <img src="https://images.pexels.com/photos/1337380/pexels-photo-1337380.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Logo" className="h-8 w-auto md:h-10" /> */}
