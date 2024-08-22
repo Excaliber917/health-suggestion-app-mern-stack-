@@ -16,7 +16,7 @@ export const sendMessage = async (req, res) => {
 
     try {
         // Find or create a conversation for the user
-        let conversation = await Conversation.findOne({ userId });
+        let conversation = await Conversation.findOne({ userId }).populate('messages');
 
         if (!conversation) {
             conversation = new Conversation({ userId });
@@ -31,10 +31,20 @@ export const sendMessage = async (req, res) => {
         });
         await userMessage.save();
 
+        // Prepare the conversation history for the AI prompt
+        const previousMessages = conversation.messages.map(msg => `${msg.sender === 'user' ? 'User' : 'Bot'}: ${msg.text}`).join('\n');
+        const prompt = `${previousMessages}\nUser: ${text}`;
+
         // Call Gemini API to get a response
-        const result = await model.generateContent(text);
-        if (!result) console.log("error in model response")
-        const botResponse = result.response.text();
+        const result = await model.generateContent(prompt);
+        if (!result) console.log("error in model response");
+
+        let botResponse = result.response.text();
+
+        // Remove the "Bot:" prefix if it exists
+        if (botResponse.startsWith("Bot:")) {
+            botResponse = botResponse.replace("Bot:", "").trim();
+        }
 
         // Create a new message with the bot's response
         const botMessage = new Message({
@@ -48,14 +58,16 @@ export const sendMessage = async (req, res) => {
         conversation.messages.push(userMessage._id, botMessage._id);
         await conversation.save();
 
-        res.status(200).json({ userMessage, botMessage });
+        // Return the latest messages only (user message and bot response)
+        res.status(200).json([userMessage, botMessage]);
 
     } catch (error) {
-       
         console.error('Error in sendMessage:', error);
-        res.status(500).json({ error: 'An error occurred while processing the request.' });
+        res.status(500).json({error:'An error occurred while processing the request.'} );
     }
 };
+
+
 
 export const getAllMessage = async (req, res) => {
     const userId = req.user._id;
@@ -73,6 +85,6 @@ export const getAllMessage = async (req, res) => {
 
     } catch (error) {
         console.error('Error in getAllMessage:', error);
-        res.status(500).json({ error: 'An error occurred while fetching the messages.' });
+        res.status(500).json({ error: 'An error occurred while fetching the conversation.' });
     }
 };

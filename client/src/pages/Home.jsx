@@ -1,7 +1,9 @@
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 
 function Home() {
+  const {user} = useAuthContext()
   return (
     <>
       <div className="bg-gradient-to-r from-purple-300 via-pink-300 to-red-300 min-h-screen">
@@ -14,7 +16,7 @@ function Home() {
         {/* Card Section */}
         <section className="flex flex-col gap-2 md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-8 px-4">
           {/* Card 1 */}
-          <div className="relative w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6 text-center hover:bg-purple-100 transition-colors duration-300 ease-in-out cursor-pointer">
+          <Link to={user ? "/mentaldetails" : ''} className="relative w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6 text-center hover:bg-purple-100 transition-colors duration-300 ease-in-out cursor-pointer">
             <h2 className="text-2xl font-bold text-gray-800">Mental Health</h2>
             <p className="text-gray-600 mt-2">Discover ways to maintain a balanced and healthy mind.</p>
             <img
@@ -22,7 +24,7 @@ function Home() {
               alt="Mental Health"
               className="absolute -top-10 right-10 h-16 w-16 rounded-full border-4 border-white"
             />
-          </div>
+          </Link>
 
           {/* Card 2 */}
           <Link to="/physicaldetails" className="relative w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6 text-center hover:bg-pink-100 transition-colors duration-300 ease-in-out cursor-pointer">

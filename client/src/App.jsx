@@ -9,6 +9,7 @@ import PhysicalDetails from "./pages/PhysicalDetails"
 import { useAuthContext } from "./context/AuthContext"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
+import MentalFitnessChatbot from "./pages/MentalFitnessChatbot"
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Home />} />
         <Route path="/physicaldetails" element={<PhysicalDetails />} />
+        <Route path="/mentaldetails" element={user ? <MentalFitnessChatbot />: <Home/>} />
 
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<ContactUs />} />
