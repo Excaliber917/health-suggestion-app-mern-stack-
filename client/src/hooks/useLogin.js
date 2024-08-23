@@ -26,7 +26,7 @@ export const useLogin = ()=>{
       
         }catch(error)
         {
-            toast.error(error)
+            toast.error(error.response.data.error)
         }finally{
             setLoading(false)
         }

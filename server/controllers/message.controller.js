@@ -63,7 +63,7 @@ export const sendMessage = async (req, res) => {
 
     } catch (error) {
         console.error('Error in sendMessage:', error);
-        res.status(500).json({error:'An error occurred while processing the request.'} );
+        res.status(500).json({ error: 'An error occurred while processing the request.' });
     }
 };
 
@@ -78,10 +78,11 @@ export const getAllMessage = async (req, res) => {
         const conversation = await Conversation.findOne({ userId }).populate('messages');
 
         if (!conversation) {
-            return res.status(404).json({ error: 'Conversation not found' });
+            return res.status(201).json("welcom")
         }
 
         res.status(200).json(conversation);
+      
 
     } catch (error) {
         console.error('Error in getAllMessage:', error);

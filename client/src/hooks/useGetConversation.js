@@ -5,14 +5,18 @@ import { useMsgContext } from "../context/MessageContext"
 
 export const useGetConversation = () => {
     const [loading, setLoading] = useState(false)
-    const {setMessages} = useMsgContext()
+    const { setMessages } = useMsgContext()
 
 
     const getConversation = async () => {
         try {
+        
             setLoading(true)
             const res = await axios.get("/api/mentalhealth/conversation")
-            // console.log(res.data?.messages)
+            if (!res.data?.messages) {
+                return
+            }
+
             setMessages(res.data?.messages)
 
         } catch (error) {
@@ -22,8 +26,9 @@ export const useGetConversation = () => {
 
         } finally {
             setLoading(false)
+         
         }
     }
 
-    return {loading , getConversation}
+    return { loading, getConversation }
 }

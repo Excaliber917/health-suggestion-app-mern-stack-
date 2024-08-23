@@ -12,7 +12,7 @@ export const useUpdateUser = () => {
     const updateUser = async ({ name, username, password, email, gender }) => {
 
 
-        const success = UseVerifyInputs({user, name, username, password, email, gender })
+        const success = UseVerifyInputs({user, name, username, email, gender })
         if (!success)
             return
         try {
@@ -39,10 +39,11 @@ export const useUpdateUser = () => {
     return { loading, updateUser }
 }
 
-function UseVerifyInputs({user, name, username, password, email, gender }) {
+function UseVerifyInputs({user, name, username, email, gender }) {
 
 
-    if (user.name === name && user.username === username && user.password === password && user.email === email && user.gender === gender) {
+    if (user.name === name && user.username === username && user.email === email && user.gender === gender) {
+        console.log("here")
         return false
     }
     return true
