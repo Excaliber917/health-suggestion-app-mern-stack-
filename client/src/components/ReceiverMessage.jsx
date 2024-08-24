@@ -6,7 +6,7 @@ function ReceiverMessage({ message }) {
 
   const formattedText = message?.split('\n').map((part, index) => (
     <span key={index}>
-      {part.includes('##') ? <b>{part.replace('##', '')}</b> : part}
+      {part.includes('**') ? <b>{part.replace('**', '')}</b> : part}
       <br />
     </span>
   ));
