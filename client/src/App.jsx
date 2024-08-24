@@ -20,19 +20,19 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/login" element={<Login />}/>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/physicaldetails" element={<PhysicalDetails />} />
-        <Route path="/mentaldetails" element={user ? <MentalFitnessChatbot />: <Home/>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/physicaldetails" element={<PhysicalDetails />} />
+          <Route path="/mentaldetails" element={user ? <MentalFitnessChatbot /> : <Home />} />
 
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
-      <Toaster />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/profile" element={user ? <Profile /> : <Home />} />
+        </Routes>
+        <Toaster />
 
-    </BrowserRouter >
+      </BrowserRouter >
 
     </>
   )

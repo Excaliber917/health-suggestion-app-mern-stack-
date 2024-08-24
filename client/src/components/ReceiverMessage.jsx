@@ -4,6 +4,7 @@
 function ReceiverMessage({ message }) {
 
 
+  // eslint-disable-next-line react/prop-types
   const formattedText = message?.split('\n').map((part, index) => (
     <span key={index}>
       {part.includes('**') ? <b>{part.replace('**', '')}</b> : part}

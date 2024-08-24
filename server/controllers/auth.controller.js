@@ -18,11 +18,11 @@ export const signUp = async (req, res) => {
         const user = await User.findOne({ username })
 
         if (user)
-            return res.status(400).json({ message: "user already exits" })
+            return res.status(400).json({ error: "user already exits" })
 
         // Check if the email is valid
         if (!validateEmail(email)) {
-            return res.status(400).json({ message: "Invalid email format" });
+            return res.status(400).json({ error: "Invalid email format" });
         }
 
         //hash password
@@ -83,9 +83,15 @@ export const login = async (req, res) => {
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || "")
 
         // console.log(isPasswordCorrect)
-        if (!user || !isPasswordCorrect) {
+        if (!user) {
 
-            return res.status(400).json({ error: "invalid login details" })
+            return res.status(400).json({ error: "user not exists" })
+        }
+
+        if(!isPasswordCorrect)
+        {
+            return res.status(400).json({ error: "password is not correct" })
+
         }
 
         genToken(user._id, res)
