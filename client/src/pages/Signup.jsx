@@ -3,6 +3,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useSignup from '../hooks/useSignup';
 import { Link } from 'react-router-dom';
 
+
 function Signup() {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [formData, setFormData] = useState({
@@ -13,7 +14,7 @@ function Signup() {
         gender: ''
     });
 
-    const { loading, signup } = useSignup();
+    const { signup } = useSignup();
 
     const handleChange = (e) => {
         setFormData({

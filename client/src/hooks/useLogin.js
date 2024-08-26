@@ -15,6 +15,7 @@ export const useLogin = ()=>{
 
         try{
             setLoading(true)
+            // console.log(loading)
             const res = await axios.post('/api/auth/login',{
                 username,
                 password
@@ -29,6 +30,7 @@ export const useLogin = ()=>{
             toast.error(error.response.data.error)
         }finally{
             setLoading(false)
+            // console.log(loading)
         }
     }
 

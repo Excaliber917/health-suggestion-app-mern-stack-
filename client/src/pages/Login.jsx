@@ -9,7 +9,7 @@ function Login() {
         username: '',
         password: ''
     });
-    const { loading, login } = useLogin();
+    const { login } = useLogin();
 
     const handleChange = (e) => {
         setFormData({
@@ -26,6 +26,7 @@ function Login() {
         e.preventDefault();
         login(formData);
     };
+
 
     return (
         <div className="min-h-screen bg-gradient-to-r from-purple-300 via-pink-300 to-red-300 dark:from-gray-800 dark:via-gray-700 dark:to-gray-600 flex items-center justify-center p-8">
