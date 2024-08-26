@@ -4,7 +4,7 @@ import ChatInput from "../components/ChatInput";
 
 const MentalFitnessChatbot = () => {
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-screen dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 ">
             {/* ChatContainer will take up the available space */}
             <ChatContainer />
 

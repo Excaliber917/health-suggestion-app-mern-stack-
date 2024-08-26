@@ -14,7 +14,7 @@ export const useSendMessage = () => {
             setLoading(true)
             const res = await axios.post("/api/mentalhealth/chat", {text})
 
-            console.log(res.data)
+            // console.log(res.data)
             setMessages([...messages,...res.data])
         } catch (error) {
             console.log(error.message)

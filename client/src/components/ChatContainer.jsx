@@ -10,6 +10,7 @@ function ChatContainer() {
   const { loading, getConversation } = useGetConversation();
   const { messages } = useMsgContext();
   const lastResponse = useRef(null);
+  const scrollAtMount = useRef(null)
 
   // Configure NProgress for a slower progress bar
   NProgress.configure({
@@ -19,6 +20,8 @@ function ChatContainer() {
   });
   useEffect(() => {
     getConversation();
+    scrollAtMount.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollAtMount.current = null;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -36,8 +39,8 @@ function ChatContainer() {
   }, [messages]);
   // console.log(messages)
   return (
-    <div className="flex-1 p-6 overflow-y-auto bg-gray-100">
-      {messages.length === 0  ? (
+    <div className="flex-1 p-6 overflow-y-auto bg-gray-100 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 ">
+      {messages.length === 0 ? (
         <div className="flex justify-center items-center h-full">
           <div className="text-center">
             <h1 className="text-2xl font-semibold mb-2">Welcome to Our Chat!</h1>
@@ -47,11 +50,15 @@ function ChatContainer() {
       ) : (
         messages.map((msg, index) =>
           msg.sender === 'user' ? (
-            <div key={index} ref={lastResponse}>
+
+
+            <div key={index} ref={lastResponse} >
               <SenderMessage message={msg.text} />
             </div>
           ) : (
-            <ReceiverMessage key={index} message={msg.text} />
+            <div key={index} ref={scrollAtMount}>
+              <ReceiverMessage message={msg.text} />
+            </div>
           )
         )
       )}
