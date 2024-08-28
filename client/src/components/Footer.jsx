@@ -41,7 +41,7 @@ function Footer() {
                 </div>
 
                 {/* Copyright Notice */}
-                <div className="md:mt-0 text-sm text-white dark:text-gray-400">
+                <div className="md:mt-0 text-sm text-white dark:text-pink-600">
                     ©FitHealth. All rights reserved.
                 </div>
             </div>

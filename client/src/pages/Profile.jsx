@@ -56,7 +56,7 @@ function Profile() {
   }, [loading]);
   console.log(loading)
   return (
-    <div className="min-h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 flex items-center justify-center p-8">
+    <div className="min-h-screen bg-gradient-to-r from-purple-300 via-pink-300 to-red-300 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 flex items-center justify-center p-8">
       <div className="backdrop-filter backdrop-blur-lg bg-white/30 dark:bg-gray-800/50 shadow-lg rounded-lg flex flex-col justify-center p-8 w-full max-w-md">
         <h2 className="text-3xl font-extrabold text-center mb-8 text-gray-900 dark:text-gray-100">Profile</h2>
 

@@ -82,7 +82,7 @@ function Navbar() {
 
           {user ? (
             <div className="flex items-center gap-4 mb-3">
-              <Link to="/profile" className="hover:text-gray-300 text-white text-4xl font-bold">{user.username}</Link>
+              <Link to="/profile" onClick={toggleSidebar} className="hover:text-gray-300 text-white text-4xl font-bold">{user.username}</Link>
               <img
                 src={user.profilePic}
                 alt="Profile"
