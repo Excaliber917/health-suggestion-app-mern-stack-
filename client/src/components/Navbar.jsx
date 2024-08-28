@@ -6,6 +6,7 @@ import { useAuthContext } from '../context/AuthContext';
 import { IoLogOutOutline } from "react-icons/io5";
 import useLogout from '../hooks/useLogout';
 import { useDarkMode } from '../context/DarkModeContext'; // Import the custom hook
+import logo from '../assets/logo.png';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,11 +28,11 @@ function Navbar() {
 
       {/* Logo */}
       <Link to="/" className="text-lg font-bold md:text-xl">
-        LOGO
+        <img src={logo} alt="Logo" className="h-12 w-auto md:h-10" />
       </Link>
 
       {/* Links */}
-      <div className="hidden md:flex space-x-8">
+      <div className="hidden flex-1 items-center justify-center md:flex space-x-8">
         <Link to="/" className={`hover:text-gray-300 font-semibold ${location.pathname === "/" ? `border-b-2 ${isDarkMode ? 'border-white' : 'border-black'} rounded` : ``}`}>Home</Link>
         <Link to="/about" className={`hover:text-gray-300 font-semibold ${location.pathname === "/about" ? `border-b-2 ${isDarkMode ? 'border-white' : 'border-black'} rounded` : ``}`}>About</Link>
         <Link to="/contact" className={`hover:text-gray-300 font-semibold ${location.pathname === "/contact" ? `border-b-2 ${isDarkMode ? 'border-white' : 'border-black'} rounded` : ``}`}>Contact</Link>
@@ -75,12 +76,13 @@ function Navbar() {
           className={`absolute top-4 right-4 ${isDarkMode ? 'text-gray-200' : 'text-gray-600'}`}
           onClick={toggleSidebar}
         >
-          <GiCrossMark className="h-6 w-6 cursor-pointer" />
+          <GiCrossMark className="h-6 w-6 text-white cursor-pointer" />
         </button>
         <div className={`flex flex-col items-start pl-7 mt-16 space-y-8 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+
           {user ? (
             <div className="flex items-center gap-4 mb-3">
-              <Link to="/profile" className="hover:text-gray-300 text-4xl font-bold">{user.username}</Link>
+              <Link to="/profile" className="hover:text-gray-300 text-white text-4xl font-bold">{user.username}</Link>
               <img
                 src={user.profilePic}
                 alt="Profile"
@@ -89,24 +91,29 @@ function Navbar() {
             </div>
           ) : (
             <div className='flex items-center gap-2'>
-              <button className='border-2 py-2 px-4 font-bold rounded hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white duration-200 cursor-pointer text-md' onClick={() => {
+              <button className='border-2 py-2 px-4 font-bold text-white rounded hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white duration-200 cursor-pointer text-md' onClick={() => {
                 navigate("/login");
                 toggleSidebar();
               }}>Login</button>
-              <button className='border-2 py-2 px-4 font-bold rounded hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white duration-200 cursor-pointer text-md' onClick={() => {
+              <button className='border-2 py-2 px-4 font-bold text-white rounded hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white duration-200 cursor-pointer text-md' onClick={() => {
                 navigate("/signup");
                 toggleSidebar();
               }}>Sign up</button>
             </div>
           )}
 
-          <Link to="/" className={`text-xl hover:text-gray-300 ${location.pathname === "/" ? `text-2xl font-bold` : ``}`} onClick={() => toggleSidebar()}>Home</Link>
-          <Link to="/about" className={`text-xl hover:text-gray-300 ${location.pathname === "/about" ? `text-2xl font-bold` : ``}`} onClick={() => toggleSidebar()}>About</Link>
-          <Link to="/contact" className={`text-xl hover:text-gray-300 ${location.pathname === "/contact" ? `text-2xl font-bold` : ``}`} onClick={() => toggleSidebar()}>Contact</Link>
-          <IoLogOutOutline size={35} onClick={() => {
-            logout();
-            toggleSidebar();
-          }} color='red' />
+          <Link to="/" className={`text-xl text-white hover:text-gray-300 ${location.pathname === "/" ? `text-2xl font-bold` : ``}`} onClick={() => toggleSidebar()}>Home</Link>
+          <Link to="/about" className={`text-xl text-white hover:text-gray-300 ${location.pathname === "/about" ? `text-2xl font-bold` : ``}`} onClick={() => toggleSidebar()}>About</Link>
+          <Link to="/contact" className={`text-xl text-white hover:text-gray-300 ${location.pathname === "/contact" ? `text-2xl font-bold` : ``}`} onClick={() => toggleSidebar()}>Contact</Link>
+          <div className='flex items-center gap-2'>
+            <IoLogOutOutline size={35} title='logout' onClick={() => {
+              logout();
+              toggleSidebar();
+            }} color='red' />
+            <button onClick={toggleDarkMode} className="focus:outline-none">
+              {isDarkMode ? <FaSun size={35} title='light mode'  onClick={()=>toggleSidebar()} className="text-yellow-400" /> : <FaMoon size={20} title=" dark mode" onClick={()=>toggleSidebar()} className="text-white" />}
+            </button>
+          </div>
         </div>
       </div>
     </nav>

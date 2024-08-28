@@ -25,10 +25,10 @@ function ChatInput() {
 
     return (
         <div className='flex flex-col p-3 justify-center bg-gray-100 items-center dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700  '>
-            <div className="flex w-full px-20  bg-gray-100 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 ">
+            <div className="flex w-full md:px-20 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 ">
                 <input
                     type="text"
-                    className="flex-1 p-2 border dark:text-white dark:border-pink-500  dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700  shadow-md border-gray-300 rounded-l-lg bg-gray-100 focus:outline-none"
+                    className="flex-1 p-2 border dark:text-white dark:border-pink-500  dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700  shadow-md rounded-l-lg bg-gray-100 focus:outline-none"
                     placeholder="Type your message..."
                     value={inputValue}
                     onKeyDown={handleKey}

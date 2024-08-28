@@ -42,7 +42,7 @@ function Footer() {
 
                 {/* Copyright Notice */}
                 <div className="md:mt-0 text-sm text-white dark:text-gray-400">
-                    © 2024 Your Company. All rights reserved.
+                    ©FitHealth. All rights reserved.
                 </div>
             </div>
         </footer>

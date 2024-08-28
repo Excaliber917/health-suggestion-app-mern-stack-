@@ -64,9 +64,9 @@ function PhysicalDetails() {
 
     return (
         <>
-            <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 min-h-screen flex items-center justify-center px-8 py-4">
+            <div className="bg-gradient-to-r from-purple-300 via-pink-300 to-red-300 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 min-h-screen flex items-center justify-center px-8 py-4">
                 <div className="backdrop-filter backdrop-blur-lg bg-white/30 dark:bg-gray-800/50 shadow-lg rounded-lg p-8 w-full max-w-lg">
-                    <h2 className="text-3xl font-extrabold text-gray-900 dark:text-gray-100 text-center mb-6">Physical Details</h2>
+                    <h2 className="text-3xl font-extrabold text-slate-600 dark:text-gray-100 text-center mb-6">Physical Details</h2>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
