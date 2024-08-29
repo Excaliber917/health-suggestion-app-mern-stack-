@@ -1,14 +1,13 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
-import emailjs from 'emailjs-com';
+import emailjs from 'emailjs-com'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 
 function ContactUs() {
   const [formData, setFormData] = useState({
     name: '',
-    username: '',
     email: '',
     message: ''
   });
@@ -27,10 +26,10 @@ function ContactUs() {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    const { name, username, email, message } = formData;
+    const { name, email, message } = formData;
 
     // Basic form validation
-    if (!name || !username || !email || !message) {
+    if (!name || !email || !message) {
       setError('All fields are required.');
       return;
     }
@@ -43,7 +42,7 @@ function ContactUs() {
           toast.success('Message sent successfully!');
           console.log('SUCCESS!');
           setSuccess('Your message has been sent successfully.');
-          setTimeout(() => navigate('/'), 2000); 
+          setTimeout(() => navigate('/'), 2000);
         },
         (error) => {
           toast.error('Failed to send message. Please try again later.');
@@ -77,17 +76,7 @@ function ContactUs() {
               />
             </div>
 
-            <div className="mb-4">
-              <label htmlFor="username" className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Username</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-400 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-pink-500 transition duration-300"
-              />
-            </div>
+
 
             <div className="mb-4">
               <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Email</label>
@@ -109,7 +98,7 @@ function ContactUs() {
                 value={formData.message}
                 onChange={handleChange}
                 rows="5"
-                className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-400 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-pink-500 transition duration-300"
+                className="w-full dark:text-white px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-pink-400 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-pink-500 transition duration-300"
               />
             </div>
 
