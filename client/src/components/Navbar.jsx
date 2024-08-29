@@ -12,7 +12,7 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { loading, logout } = useLogout();
+  const {logout } = useLogout();
   const { user } = useAuthContext();
 
   const toggleSidebar = () => {

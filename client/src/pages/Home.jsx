@@ -1,6 +1,8 @@
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import physicalImage from '../assets/physical_health_banner.jpeg'
+import mentalImage from '../assets/mental_health_banner.webp'
 
 function Home() {
   const { user } = useAuthContext();
@@ -33,7 +35,7 @@ function Home() {
               Discover ways to maintain a balanced and healthy mind.
             </p>
             <img
-              src="https://images.pexels.com/photos/8849272/pexels-photo-8849272.jpeg?auto=compress&cs=tinysrgb&w=600"
+              src={mentalImage}
               alt="Mental Health"
               className="absolute -top-10 right-10 h-16 w-16 rounded-full border-4 border-white dark:border-gray-700"
             />
@@ -51,7 +53,7 @@ function Home() {
               Learn about physical activities and diet to keep your body fit.
             </p>
             <img
-              src="https://images.pexels.com/photos/669577/pexels-photo-669577.jpeg?auto=compress&cs=tinysrgb&w=600"
+              src={physicalImage}
               alt="Physical Health"
               className="absolute -top-10 right-10 h-16 w-16 rounded-full border-4 border-white dark:border-gray-700"
             />
