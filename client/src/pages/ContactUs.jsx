@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
+import emailjs from 'emailjs-com';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 function ContactUs() {
   const [formData, setFormData] = useState({
@@ -10,7 +13,9 @@ function ContactUs() {
     message: ''
   });
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const navigate = useNavigate();
+  const form = useRef();
 
   const handleChange = (e) => {
     setFormData({
@@ -19,7 +24,7 @@ function ContactUs() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
 
     const { name, username, email, message } = formData;
@@ -30,8 +35,21 @@ function ContactUs() {
       return;
     }
 
-    // Redirect to homepage upon successful submission
-    navigate('/');
+    setError('');
+
+    emailjs.sendForm('service_9mp4t3q', 'template_inqvfjh', form.current, 'oqTfP-HP0MvvlK8fs')
+      .then(
+        () => {
+          toast.success('Message sent successfully!');
+          console.log('SUCCESS!');
+          setSuccess('Your message has been sent successfully.');
+          setTimeout(() => navigate('/'), 2000); 
+        },
+        (error) => {
+          toast.error('Failed to send message. Please try again later.');
+          console.log('FAILED...', error.text);
+        }
+      );
   };
 
   return (
@@ -43,7 +61,10 @@ function ContactUs() {
           {/* Error Message */}
           {error && <p className="text-red-500 dark:text-red-400 text-center mb-4">{error}</p>}
 
-          <form onSubmit={handleSubmit}>
+          {/* Success Message */}
+          {success && <p className="text-green-500 dark:text-green-400 text-center mb-4">{success}</p>}
+
+          <form ref={form} onSubmit={sendEmail}>
             <div className="mb-4">
               <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Name</label>
               <input
@@ -94,7 +115,7 @@ function ContactUs() {
 
             <button
               type="submit"
-              className="w-full bg-pink-500 text-white font-bold py-2 px-4 rounded hover:bg-pink-600  dark:bg-pink-600 dark:hover:bg-pink-700 transition duration-300"
+              className="w-full bg-pink-500 text-white font-bold py-2 px-4 rounded hover:bg-pink-600 dark:bg-pink-600 dark:hover:bg-pink-700 transition duration-300"
             >
               Send
             </button>
@@ -102,6 +123,7 @@ function ContactUs() {
         </div>
       </div>
       <Footer />
+      <ToastContainer />
     </>
   );
 }
