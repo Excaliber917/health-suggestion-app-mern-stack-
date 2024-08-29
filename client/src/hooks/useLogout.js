@@ -19,7 +19,7 @@ function useLogout() {
             setUser(null)
             navigate("/")
 
-            toast.success("Loged out")
+            toast.success("Logged out")
 
 
         } catch (error) {
