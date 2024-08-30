@@ -1,5 +1,5 @@
 import Footer from "../components/Footer";
-
+import {Link} from 'react-router-dom'
 function About() {
   const teamMembers = [
     {
@@ -72,9 +72,9 @@ function About() {
           <p className="text-gray-600 dark:text-gray-300 mb-8">
             We’re always looking for passionate individuals to join our team. If you’re ready to make a difference, contact us today.
           </p>
-          <a href="/contact" className="text-white bg-pink-500 dark:bg-pink-600 px-6 py-3 rounded-full shadow-lg hover:bg-pink-600 dark:hover:bg-pink-700 transition-colors">
+          <Link to="/contact" className="text-white bg-pink-500 dark:bg-pink-600 px-6 py-3 rounded-full shadow-lg hover:bg-pink-600 dark:hover:bg-pink-700 transition-colors">
             Contact Us
-          </a>
+          </Link>
         </section>
       </div>
       <Footer />
