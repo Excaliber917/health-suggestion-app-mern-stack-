@@ -12,7 +12,7 @@ export const useSendMessage = () => {
         }
         try {
             setLoading(true)
-            const res = await axios.post("https://fithealth-aea5.onrender.com/api/mentalhealth/chat", {text})
+            const res = await axios.post("https://fithealth-aea5.onrender.com/api/mentalhealth/chat", {text},{withCredentials:true})
 
             // console.log(res.data)
             setMessages([...messages,...res.data])

@@ -12,7 +12,7 @@ export const useGetConversation = () => {
         try {
         
             setLoading(true)
-            const res = await axios.get("https://fithealth-aea5.onrender.com/api/mentalhealth/conversation")
+            const res = await axios.get("https://fithealth-aea5.onrender.com/api/mentalhealth/conversation",{withCredentials:true})
             if (!res.data?.messages) {
                 return
             }
