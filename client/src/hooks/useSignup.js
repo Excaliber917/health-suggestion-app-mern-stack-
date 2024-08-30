@@ -22,7 +22,7 @@ function useSignup() {
                 password,
                 email,
                 gender
-            })
+            },{withCredentials:true})
             toast.success("successfully signed up")
             localStorage.setItem("Healthuser",JSON.stringify(res.data))
             setUser(res.data)

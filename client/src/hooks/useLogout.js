@@ -14,7 +14,7 @@ function useLogout() {
         if(!user)
             return
         try {
-            await axios.post('https://fithealth-aea5.onrender.com/api/auth/logout')
+            await axios.post('https://fithealth-aea5.onrender.com/api/auth/logout',{withCredentials:true})
             localStorage.removeItem("Healthuser")
             setUser(null)
             navigate("/")

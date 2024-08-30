@@ -19,7 +19,7 @@ export const useLogin = ()=>{
             const res = await axios.post('https://fithealth-aea5.onrender.com/api/auth/login',{
                 username,
                 password
-            })
+            },{withCredentials:true})
             toast.success("Log In successfull")
             localStorage.setItem("Healthuser",JSON.stringify(res.data))
             setUser(res.data)
