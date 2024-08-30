@@ -22,7 +22,7 @@ export const useUpdateUser = () => {
                 data.password = password;
             }
 
-            const res = await axios.put(`api/user/updateuser/${user._id}`, data);
+            const res = await axios.put(`https://fithealth-aea5.onrender.com/api/user/updateuser/${user._id}`, data);
 
             localStorage.setItem("Healthuser", JSON.stringify(res.data));
             toast.success("Updated successfully");

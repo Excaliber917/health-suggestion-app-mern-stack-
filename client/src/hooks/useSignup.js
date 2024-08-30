@@ -16,7 +16,7 @@ function useSignup() {
             return
         try{
             setLoading(true)
-            const res = await axios.post('/api/auth/signup',{
+            const res = await axios.post('https://fithealth-aea5.onrender.com/api/auth/signup',{
                 name,
                 username,
                 password,
