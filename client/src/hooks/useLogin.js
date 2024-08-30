@@ -16,7 +16,7 @@ export const useLogin = ()=>{
         try{
             setLoading(true)
             // console.log(loading)
-            const res = await axios.post('/api/auth/login',{
+            const res = await axios.post('https://fithealth-aea5.onrender.com/api/auth/login',{
                 username,
                 password
             })
