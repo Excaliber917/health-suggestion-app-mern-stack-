@@ -5,6 +5,13 @@ import authRoute from './routes/auth.route.js'
 import cookieParser from 'cookie-parser';
 import userRoute from './routes/user.route.js';
 import messageRouter from './routes/message.route.js';
+import cors from 'cors'
+const corsOptions = {
+    origin: 'https://fithealth-frontend.onrender.com', //  frontend URL
+    optionsSuccessStatus: 200,
+  };
+  
+  app.use(cors(corsOptions));
 dotenv.config()
 const app = express()
 app.use(express.json());
