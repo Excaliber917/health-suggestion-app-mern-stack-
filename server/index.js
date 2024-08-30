@@ -10,7 +10,6 @@ const app = express()
 dotenv.config()
 const corsOptions = {
     origin: 'https://fithealth-frontend.onrender.com', //  frontend URL
-    optionsSuccessStatus: 200,
     credentials: true,
 };
 
